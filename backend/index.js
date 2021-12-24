@@ -57,25 +57,26 @@ app.use(session({
      (err, result) => {
          console.log(err);
      });
+     res.send()
     } 
    }) 
   }) 
   
-  app.get("/register", (req, res) => {
-    if (username && password > 5) {
-      res.send({ registerIn: true })
-    } else {
-      res.send({ registerOut: false })
-    }  
-  })
+  // app.get("/register", (req, res) => {
+  //   if (username && password > 5) {
+  //     res.send({ registerIn: true })
+  //   } else {
+  //     res.send({ registerOut: false })
+  //   }  
+  // })
 
-  app.get("/login", (req, res) => {
-    if (req.session.user) {
-      res.send({ loggedIn: true, user: req.session.user })
-    } else {
-      res.send({ loggedIn: false })
-    }  
-  })
+  // app.get("/login", (req, res) => {
+  //   if (req.session.user) {
+  //     res.send({ loggedIn: true, user: req.session.user })
+  //   } else {
+  //     res.send({ loggedIn: false })
+  //   }  
+  // })
 
   app.post('/login', (req, res) => {
     const username = req.body.username;

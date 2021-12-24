@@ -17,11 +17,11 @@ export const App = () => {
       Axios.post("https://5001-tomato-butterfly-ad2u3ute.ws-us25.gitpod.io/register", { 
         username: usernameReg,
         password: passwordReg,
-      }).then((response) => {
-        if (response.data.message) {
-          setRegisterStatus(response.data.message)
+      }).then((result) => {
+        if (result > 3) {
+          setRegisterStatus(result)
         } else {
-          setRegisterStatus(<Navigate to="/home/*" />)
+          setRegisterStatus(<Navigate to="/login/*" />)
         } 
       })
     }
@@ -43,16 +43,17 @@ export const App = () => {
     }, [])
 */
   return (
+    
     <div className="App">
        <div className="registration">
          <h1>Registration</h1>
          <label>Username</label>
-         <input type="text" onChange={(e) => {
+         <input type="text" required onChange={(e) => {
            setUsernameReg(e.target.value);
          }}
          />
          <label>Password</label>
-         <input type="text" onChange={(e) => {
+         <input type="text" required onChange={(e) => {
            setPasswordReg(e.target.value);
          }}
          />
