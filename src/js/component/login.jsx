@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import Axios from 'axios';
 
@@ -9,7 +9,7 @@ export const Login = () => {
 
   const [loginStatus, setLoginStatus] = useState("");
 
-  //Axios.defaults.withCredentials = true;
+  Axios.defaults.withCredentials = true;
 
   const login = () => {
     Axios.post("https://5001-tomato-butterfly-ad2u3ute.ws-us25.gitpod.io/login", { 
@@ -24,15 +24,18 @@ export const Login = () => {
     })
   }
 
-  // useEffect(() => {
-  //     Axios.get("https://5001-black-buzzard-v2057bi9.ws-us23.gitpod.io/login").then((response) => {
-  //       if (response.data.loggedIn == true) {
-  //       setLoginStatus(response.data.user[0].username);
-  //       }
-  //     }) 
-  //   }, [])
+
+
+  useEffect(() => {
+    Axios.get("https://5001-tomato-butterfly-ad2u3ute.ws-us25.gitpod.io/login").then((response) => {
+      if (response.data.loggedIn == true) {
+      console.log(response.data.user[0].username);
+      }
+    }) 
+  }, [])
+
     return (
-      <>
+      <>                                                                                                                                        
       <div className="login">
         <h1>Login</h1>
         <input type="text" placeholder="Username" onChange={(e) => {

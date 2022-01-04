@@ -21,15 +21,9 @@ app.use(cors({
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use(function (request, response, next) {
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 app.use(session({
   key: "userId",
-  secret: "sub",
+  secret: "subscribe",
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -44,6 +38,7 @@ app.use(session({
      password: "frtysk489",
      database: "syst"
  })
+
 
   app.post("/register", (req, res) => {
       const username = req.body.username;
@@ -61,23 +56,31 @@ app.use(session({
     } 
    }) 
   }) 
-  
-  // app.get("/register", (req, res) => {
-  //   if (username && password > 5) {
-  //     res.send({ registerIn: true })
-  //   } else {
-  //     res.send({ registerOut: false })
-  //   }  
-  // })
 
-  // app.get("/login", (req, res) => {
-  //   if (req.session.user) {
-  //     res.send({ loggedIn: true, user: req.session.user })
-  //   } else {
-  //     res.send({ loggedIn: false })
-  //   }  
-  // })
+  app.post("/choice", (req) => {
+    const choice = req.body.select;
 
+db.query("INSERT INTO bookmark (bookmark) VALUES (?)", [choice], 
+   (err) => {
+       console.log(err);
+   });  
+ }) 
+
+  app.get("/login", (req, res) => {
+    if (req.session.user) {
+      res.send({ loggedIn: true, user: req.session.user })
+    } else {
+      res.send({ loggedIn: false })
+    }  
+  })
+
+  app.get("/logout", (req, res) => {
+    if (req.session.user) {
+            res.clearCookie('userId');
+            res.send({loggedIn: false})
+        }
+    })
+    
   app.post('/login', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -92,7 +95,7 @@ app.use(session({
            if (response) {
             req.session.user = result;
              console.log(req.session.user);
-            res.send("result")
+            res.send(result)
            } else {
             res.send({ message: "Wrong username/password combination!"})
            }

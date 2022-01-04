@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import Axios from 'axios';
 
 export const Home = () => {
+    const [radio, setRadio] = useState("");
+
+    const saveOption = () => {
+        Axios.post("https://5001-tomato-butterfly-ad2u3ute.ws-us25.gitpod.io/choice", { 
+          select: radio,
+        }).then((response) => {
+          if (response) {
+            console.log("success");
+          }
+        })
+      }
     return (
     <>
+    <h1>Welcome </h1>
    <button id="prev-btn">
         <i className="fas fa-arrow-circle-left"></i>
     </button> 
@@ -15,6 +28,11 @@ export const Home = () => {
                Select Voice: <select id='voiceList'></select> 
  
     <h1>Your Decision</h1>
+   Mock choices
+    <input id="choice-input" value="Red" type="radio" onChange={(e) => {setRadio(e.target.value)}}></input>
+    This is a mock story
+    <button onClick={saveOption}>Save</button>
+<br></br>
       <button id='btnSpeak'>Speak!</button>
   <p id='txtInput'>What is your name?</p>
         <input id="name-input" type="text"></input>
