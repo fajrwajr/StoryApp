@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Axios from 'axios';
 import Rose from "../../img/rose.png";
+import Knock from "./door-knock.jpg";
+import Scary from "./newhead.gif";
 
 export const Home = () => {
     let story;
@@ -38,7 +40,7 @@ function getStory(name) {
    },
     sword: {
       title: "It was nice knowing you!",
-      image: "1988.jpg",   
+      image: "newhead.gif",   
       story: "You fool! Why did you open the door? You let in PumpkinHead, he won't stop until he kills you. I'm sorry it had to end this way!",
       defaultDestination: "attack",
     },
@@ -74,7 +76,7 @@ function renderScene() {
   let image = "";
     
  if(story[story.currentScene].image) {
-   image = `<img id = "story_image" />`
+   image = `<img id = "story_image"  />`
   }   
   if(story[story.currentScene].buttonText) {
     text = story[story.currentScene].buttonText

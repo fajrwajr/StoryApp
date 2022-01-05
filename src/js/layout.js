@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import injectContext from "./store/appContext";
 import { App } from "./component/App";
-import { Home } from "./component/Home";
+import { Home } from "./component/Home.jsx";
 import { Login } from "./component/login.jsx";
 import { Footer } from "./component/footer";
 

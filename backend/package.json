@@ -13,7 +13,8 @@
     "express-session": "^1.17.2",
     "express-validator": "^6.14.0",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "react-pageflip": "^2.0.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
