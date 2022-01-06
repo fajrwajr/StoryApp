@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Axios from 'axios';
-import Rose from "../../img/rose.png";
+import Rose from "../../img/book.png";
 import Knock from "./door-knock.jpg";
 import Scary from "./newhead.gif";
 
@@ -9,8 +9,8 @@ export const Home = () => {
 function getStory(name) {
    return { 
    currentScene: "attack", 
-   attack: {
-   title: "Chapter 1",
+   attack: {                   
+   title: `<input id='choice-input' type='radio' value='Chapter 1' onChange=${(e) => {setRadio(e.target.value)}}>Chapter 1</input>`,
    story: `Hey ${name}, do you want to play?`,
    choices: [
      {
@@ -82,9 +82,8 @@ function renderScene() {
     text = story[story.currentScene].buttonText
   }
     content.innerHTML = `
-<h1>${story[story.currentScene].title}</h1>
-<button><i className="fa fa-bookmark" aria-hidden="true"></i>
-</button><p>${story[story.currentScene].story}</p>
+    <h1>${story[story.currentScene].title}</h1>
+<p>${story[story.currentScene].story}</p>
 ${image}
 ${getInputs()}
  <button id="submit-button">${text}</button>
@@ -129,7 +128,7 @@ function getInputs() {
     const [radio, setRadio] = useState("");
 
     const saveOption = () => {
-        Axios.post("https://5001-tomato-butterfly-ad2u3ute.ws-us25.gitpod.io/choice", {
+        Axios.post("https://5001-aqua-gerbil-h7vtend9.ws-us25.gitpod.io/choice", {
           select: radio,
         }).then((response) => {
           if (response) {
@@ -159,6 +158,8 @@ function getInputs() {
                     <input id="name-input" type="text"></input>
                     <button id="start-button">Start story!</button>
                     </div></p>
+                    <button onClick={saveOption}>Save</button>
+
                     <br></br><br></br>
                    <div className="special">
                        <img src={Rose} style={{ height: "50rem" }}/>

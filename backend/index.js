@@ -13,7 +13,7 @@ const saltRounds = 10;
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: ["https://3000-tomato-butterfly-ad2u3ute.ws-us25.gitpod.io"],  
+  origin: ["https://3000-aqua-gerbil-h7vtend9.ws-us25.gitpod.io"],  
   methods: ["GET", "POST"],
   credentials: true
 }));
