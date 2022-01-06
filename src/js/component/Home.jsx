@@ -5,6 +5,8 @@ import Knock from "./door-knock.jpg";
 import Scary from "./newhead.gif";
 import House from "./house.gif";
 import Surface from "./creeping3.jpg";
+import Beneath from "./hide.gif";
+import Scare from "./myers1.gif";
 
 export const Home = () => {
     let story;
@@ -53,14 +55,26 @@ function getStory(name) {
       choices: [
         {
          choice: "Go to kitchen to get a weapon",
-         destination: "sword"   
+         destination: "good"   
         },
          {
          choice: "Go to bedroom to get a weapon",
-         destination: "candleStick"       
+         destination: "bad"       
          } 
         ]      
-    },           
+    }, 
+    good: {
+      title: "Up in defense",
+      image: "myers1.gif",   
+      story: "You called the police and got a weapon, you're safe or are you?",
+      defaultDestination: "attack",
+    },
+    bad: {
+      title: "Beneath the Surface",
+      image: "hide.gif",
+      story: "There's something under the bed! Run! Hello? Hello...",   
+      defaultDestination: "attack",    
+    },   
    goHome: {
     title: "Back at home!",
     story: "Sometimes what's inside is scarier than whats outside",
@@ -152,7 +166,7 @@ function getInputs() {
                 </p>
                 <p>    <div id="content">
                     <h1>Your Decision</h1>
-                    <button id="start-button">Start story!</button>
+                    <button style={{ marginRight: "-80px" }} id="start-button">Start story!</button>
                     </div></p>
                     <br></br><br></br>
                    <div className="special">
