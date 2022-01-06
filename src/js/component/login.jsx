@@ -12,14 +12,14 @@ export const Login = () => {
   Axios.defaults.withCredentials = true;
 
   const login = () => {
-    Axios.post("https://5001-tomato-butterfly-ad2u3ute.ws-us25.gitpod.io/login", { 
+    Axios.post("https://5001-aqua-gerbil-h7vtend9.ws-us25.gitpod.io/login", {
       username: username,
       password: password,
     }).then((response) => { 
       if (response.data.message) {
        setLoginStatus(response.data.message)
      } else {
-      setLoginStatus(<Navigate to="/home" />)
+      setLoginStatus(response.data[0].username)
      } 
     })
   }
@@ -27,7 +27,7 @@ export const Login = () => {
 
 
   useEffect(() => {
-    Axios.get("https://5001-tomato-butterfly-ad2u3ute.ws-us25.gitpod.io/login").then((response) => {
+    Axios.get("https://5001-aqua-gerbil-h7vtend9.ws-us25.gitpod.io/login").then((response) => {
       if (response.data.loggedIn == true) {
       console.log(response.data.user[0].username);
       }

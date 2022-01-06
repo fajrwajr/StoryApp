@@ -3,6 +3,8 @@ import Axios from 'axios';
 import Rose from "../../img/book.png";
 import Knock from "./door-knock.jpg";
 import Scary from "./newhead.gif";
+import House from "./house.gif";
+import Surface from "./creeping3.jpg";
 
 export const Home = () => {
     let story;
@@ -10,7 +12,7 @@ function getStory(name) {
    return { 
    currentScene: "attack", 
    attack: {                   
-   title: `<input id='choice-input' type='radio' value='Chapter 1' onChange=${(e) => {setRadio(e.target.value)}}>Chapter 1</input>`,
+   title: "Chapter 1",
    story: `Hey ${name}, do you want to play?`,
    choices: [
      {
@@ -18,7 +20,7 @@ function getStory(name) {
       destination: "battle"   
      },
       {
-      choice: "Meh, I think I'd rather just play video games instead.",
+      choice: "No, I think I'd rather just stay inside.",
       destination: "goHome"       
       } 
     ]
@@ -45,15 +47,24 @@ function getStory(name) {
       defaultDestination: "attack",
     },
     candleStick: {
-      title: "A candlestick, seriously?",
-      story: "That's not even a real weapon. Avarice the Angry Aardvark easily defeated you. I really just don't understand why you would pick a candlestick over a sword.",
-      image: "candlestick.jpg",
-      defaultDestination: "attack"
+      title: "You've made a good choice",
+      image: "creeping3.jpg",
+      story: "Something sinister was going to hurt you behind that door",
+      choices: [
+        {
+         choice: "Go to kitchen to get a weapon",
+         destination: "sword"   
+        },
+         {
+         choice: "Go to bedroom to get a weapon",
+         destination: "candleStick"       
+         } 
+        ]      
     },           
    goHome: {
     title: "Back at home!",
-    story: "Yes, you're back home. No need to feel guilty...",
-     image: "video_game.jpg",
+    story: "Sometimes what's inside is scarier than whats outside",
+     image: "house.gif",
      defaultDestination: "attack",
      buttonText: "Let's try this again"  
    } 
@@ -62,11 +73,9 @@ function getStory(name) {
 
 document.addEventListener("DOMContentLoaded", function() {
 let button = document.querySelector('#start-button')
-let input = document.querySelector('#name-input')
 let content = document.querySelector('#content')
  button.addEventListener('click', function() {
-  let name = document.querySelector('#name-input')
-  story = getStory(name.value);
+  story = getStory();
    renderScene()  
   })
 })
@@ -82,7 +91,7 @@ function renderScene() {
     text = story[story.currentScene].buttonText
   }
     content.innerHTML = `
-    <h1>${story[story.currentScene].title}</h1>
+      <h1>${story[story.currentScene].title}</h1>
 <p>${story[story.currentScene].story}</p>
 ${image}
 ${getInputs()}
@@ -125,17 +134,6 @@ function getInputs() {
     }
    return input; 
 }
-    const [radio, setRadio] = useState("");
-
-    const saveOption = () => {
-        Axios.post("https://5001-aqua-gerbil-h7vtend9.ws-us25.gitpod.io/choice", {
-          select: radio,
-        }).then((response) => {
-          if (response) {
-            console.log("success");
-          }
-        })
-      }
     return (
     <>
        <h1>Welcome </h1>
@@ -154,12 +152,8 @@ function getInputs() {
                 </p>
                 <p>    <div id="content">
                     <h1>Your Decision</h1>
-                    <label for="name-input">What is your name?</label>
-                    <input id="name-input" type="text"></input>
                     <button id="start-button">Start story!</button>
                     </div></p>
-                    <button onClick={saveOption}>Save</button>
-
                     <br></br><br></br>
                    <div className="special">
                        <img src={Rose} style={{ height: "50rem" }}/>

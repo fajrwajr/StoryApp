@@ -17,11 +17,11 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(function (request, response, next) {
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// app.use(function (request, response, next) {
+//   response.header("Access-Control-Allow-Origin", "include");
+//   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -62,14 +62,6 @@ app.use(session({
    }) 
   }) 
 
-  app.post("/choice", (req) => {
-    const choice = req.body.select;
-
-db.query("INSERT INTO bookmark (bookmark) VALUES (?)", [choice], 
-   (err) => {
-       console.log(err);
-   });  
- }) 
 
   app.get("/login", (req, res) => {
     if (req.session.user) {
