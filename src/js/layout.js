@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 import injectContext from "./store/appContext";
 import { App } from "./component/App";
 import { Home } from "./component/Home.jsx";
+import { Book } from "./component/book.jsx";
 import { Login } from "./component/login.jsx";
 import { Footer } from "./component/footer";
 
@@ -20,9 +21,7 @@ const Layout = () => {
 					<Route path="/" element={<App />}>Register</Route>
 					<Route path="/login" element={<Login />}>Login</Route>
 					<Route path="/home" element={<Home />}>Home</Route>
-						{/* <Route>
-							<h1>Not found!</h1>
-						</Route> */}
+					<Route path="/books" element={<Book />}>Books</Route>
 					</Routes>
 					<Footer />
 				</ScrollToTop>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Axios from 'axios';
 import Rose from "../../img/book.png";
 import Knock from "./door-knock.jpg";
@@ -156,6 +157,9 @@ function getInputs() {
 
         <section className="open-book">
             <header>
+            <Link to="/books">
+						<div className="btn">Shop For Books</div>
+						</Link>
                 <h1>Chapter 1</h1>
                 <h6>Away from Home</h6>
             </header>
